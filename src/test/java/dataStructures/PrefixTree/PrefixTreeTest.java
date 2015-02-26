@@ -1,4 +1,4 @@
-package dataStructures.prefixTree;
+package dataStructures.PrefixTree;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -58,11 +58,11 @@ public class PrefixTreeTest {
         prefixTree.addWord("accddt");
         prefixTree.addWord("wxyzt");
 
-        assertThat(prefixTree.countWordsWithNcharactersChanged("aaaaa", 2)).isEqualTo(1);
-        assertThat(prefixTree.countWordsWithNcharactersChanged("aaaaa", 4)).isEqualTo(2);
-        assertThat(prefixTree.countWordsWithNcharactersChanged("axxddx", 3)).isEqualTo(1);
-        assertThat(prefixTree.countWordsWithNcharactersChanged("aaabf", 1)).isEqualTo(0);
-        assertThat(prefixTree.countWordsWithNcharactersChanged("wxyrz", 1)).isEqualTo(0);
+        assertThat(prefixTree.countWordsWithNCharactersChanged("aaaaa", 2)).isEqualTo(1);
+        assertThat(prefixTree.countWordsWithNCharactersChanged("aaaaa", 4)).isEqualTo(2);
+        assertThat(prefixTree.countWordsWithNCharactersChanged("axxddx", 3)).isEqualTo(1);
+        assertThat(prefixTree.countWordsWithNCharactersChanged("aaabf", 1)).isEqualTo(0);
+        assertThat(prefixTree.countWordsWithNCharactersChanged("wxyrz", 1)).isEqualTo(0);
 
     }
 
@@ -80,11 +80,11 @@ public class PrefixTreeTest {
         prefixTree.addWord("ytz");
 
 
-        assertThat(prefixTree.countWordsWithMissingExactlyNCharacters("aata",2)).isEqualTo(3);
-        assertThat(prefixTree.countWordsWithMissingExactlyNCharacters("acgaataaz", 7)).isEqualTo(5);
-        assertThat(prefixTree.countWordsWithMissingExactlyNCharacters("aaa", 0)).isEqualTo(2);
-        assertThat(prefixTree.countWordsWithMissingExactlyNCharacters("atcz", 2)).isEqualTo(2);
-        assertThat(prefixTree.countWordsWithMissingExactlyNCharacters("tyyz",1)).isEqualTo(2);
+        assertThat(prefixTree.countWordsWithNCharactersMissed("aata", 2)).isEqualTo(3);
+        assertThat(prefixTree.countWordsWithNCharactersMissed("acgaataaz", 7)).isEqualTo(5);
+        assertThat(prefixTree.countWordsWithNCharactersMissed("aaa", 0)).isEqualTo(2);
+        assertThat(prefixTree.countWordsWithNCharactersMissed("atcz", 2)).isEqualTo(2);
+        assertThat(prefixTree.countWordsWithNCharactersMissed("tyyz", 1)).isEqualTo(2);
     }
 
 

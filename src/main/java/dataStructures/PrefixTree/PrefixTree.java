@@ -1,4 +1,4 @@
-package dataStructures.prefixTree;
+package dataStructures.PrefixTree;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,16 +41,16 @@ public class PrefixTree {
     /**
      * Complexity: O(L * S) where L is length of word and S is a size of an alphabet
      */
-    public int countWordsWithNcharactersChanged(String word, int numberOfCharactersToChange) {
-        return countWordsWithNcharactersChanged(word, root, 0, numberOfCharactersToChange);
+    public int countWordsWithNCharactersChanged(String word, int numberOfCharactersToChange) {
+        return countWordsWithNCharactersChanged(word, root, 0, numberOfCharactersToChange);
     }
 
     /**
      * Complexity : O(L * S) where L is length of word and S is a size of an alphabet
      */
 
-    public int countWordsWithMissingExactlyNCharacters(String word, int numberOfCharactersToMiss) {
-        return countWordsWithMissingNCharacters(word, root, 0, numberOfCharactersToMiss);
+    public int countWordsWithNCharactersMissed(String word, int numberOfCharactersToMiss) {
+        return countWordsWithNCharactersMissed(word, root, 0, numberOfCharactersToMiss);
     }
 
 
@@ -90,22 +90,22 @@ public class PrefixTree {
         return countPrefixes(prefix, node.letters.get(letter), index+1);
     }
 
-    private int countWordsWithNcharactersChanged(String word, Node node, int index, int numberOfCharactersToChange) {
+    private int countWordsWithNCharactersChanged(String word, Node node, int index, int numberOfCharactersToChange) {
         if(index >= word.length() && numberOfCharactersToChange == 0) return node.words;
         if(index >= word.length() || numberOfCharactersToChange < 0) return 0;
 
         int count = 0;
         for(char letter : node.letters.keySet()) {
                 if(letter == word.charAt(index)) {
-                    count += countWordsWithNcharactersChanged(word, node.letters.get(letter), index + 1, numberOfCharactersToChange);
+                    count += countWordsWithNCharactersChanged(word, node.letters.get(letter), index + 1, numberOfCharactersToChange);
                 } else {
-                    count += countWordsWithNcharactersChanged(word, node.letters.get(letter), index + 1, numberOfCharactersToChange - 1);
+                    count += countWordsWithNCharactersChanged(word, node.letters.get(letter), index + 1, numberOfCharactersToChange - 1);
                 }
         }
         return count;
     }
 
-    private int countWordsWithMissingNCharacters(String word, Node node, int index, int numberOfCharactersToMiss) {
+    private int countWordsWithNCharactersMissed(String word, Node node, int index, int numberOfCharactersToMiss) {
         int count = 0;
         if(numberOfCharactersToMiss < 0 || index + numberOfCharactersToMiss > word.length()) return 0;
         else if(index + numberOfCharactersToMiss == word.length()) count = node.words;
@@ -118,7 +118,7 @@ public class PrefixTree {
                     actualIndex++;
                     actualMissing--;
                 }
-                count += countWordsWithMissingNCharacters(word, node.letters.get(letter), actualIndex+1, actualMissing);
+                count += countWordsWithNCharactersMissed(word, node.letters.get(letter), actualIndex + 1, actualMissing);
         }
         return count;
     }
