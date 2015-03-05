@@ -35,21 +35,28 @@ public class LCA {
         dfs(0,-1);
     }
 
-    public int lca(int a, int b) {
-        if(heights[a] < heights[b]) return lca(b,a);
-
-        for(int i=LOGN-1;i>=0;i--) {
-            if(ancestors[a][i] != -1 && heights[ancestors[a][i]] >= heights[b]) {
-                a = ancestors[a][i];
+    private int goUp(int vertex, int count) {
+        for (int i = 0; i < LOGN; i++) {
+            if (((count >> i) & 1) == 1) {
+                vertex = ancestors[vertex][i];
             }
         }
-        if(a==b) return a;
-        for(int i=LOGN-1;i>=0;i--) {
+        return vertex;
+    }
+
+     int lca(int a, int b) {
+        if(heights[a] < heights[b]) return lca(b, a);
+
+        a = goUp(a, heights[a] - heights[b]);
+        if(a == b) return a;
+
+        for(int i=LOGN-1;i>=0; i--) {
             if(ancestors[a][i] != ancestors[b][i]) {
                 a = ancestors[a][i];
                 b = ancestors[b][i];
             }
         }
+
         return ancestors[a][0];
     }
 
