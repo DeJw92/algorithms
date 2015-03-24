@@ -9,7 +9,7 @@ import java.util.Queue;
  */
 
 /**
- * Implementation find max flow of given directed graph
+ * Implementation which allows to find max flow of given directed graph
  * using modified Dinic method
  *
  * Complexity O(n^2 * m) where n - number of vertices, m - number of edges
