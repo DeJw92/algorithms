@@ -68,5 +68,14 @@ public class PalindromicTreeTest {
         assertThat(palindromicTree.getNumberOfAllPalindromes()).isEqualTo(15);
     }
 
+    @Test
+    public void testAllPalindromes() {
+        String word = "abazxaba";
+        for(int i=0;i<word.length();i++) {
+            palindromicTree.addLetter(word.charAt(i)-'a');
+        }
+        assertThat(palindromicTree.getNumberOfAllPalindromes()).isEqualTo(10);
+    }
+
 
 }

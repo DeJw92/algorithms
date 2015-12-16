@@ -46,6 +46,7 @@ class PalindromicTree {
         newNode(0);
         newNode(-1);
         suffixPalindromeLink[0] = 1;
+        suffixPalindromeLink[1] = 1;
         word[0] = -1;
     }
 
@@ -69,10 +70,10 @@ class PalindromicTree {
             int node = newNode(length[current] + 2);
             suffixPalindromeLink[node] = next[getSuffixLink(suffixPalindromeLink[current])][letterIndex];
             next[current][letterIndex] = node;
-            numberOfAllPalindromes += (num[suffixPalindromeLink[node]] + 1  - num[node]);
             num[node] = num[suffixPalindromeLink[node]] + 1;
         }
         lastPalindrome = next[current][letterIndex];
+        numberOfAllPalindromes += num[lastPalindrome];
     }
 
     private int getSuffixLink(int x) {
